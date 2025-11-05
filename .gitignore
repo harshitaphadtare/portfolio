@@ -1,0 +1,42 @@
+# Node
+node_modules/
+
+# Vite / build output
+dist/
+.vite/
+/build/
+
+# Production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Env files
+.env
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/
+.idea/
+.DS_Store
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Coverage
+coverage/
+
+# Misc
+*.tgz
+*.local
+
+# Optional: lockfile stores (uncomment if you use them locally and want to ignore)
+# pnpm-lock.yaml
+# yarn.lock
+# package-lock.json

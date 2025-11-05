@@ -1,0 +1,354 @@
+{
+  "personal": {
+    "name": "Harshita Phadtare",
+    "title": "Machine Learning Engineer & AI Enthusiast",
+    "heroTitle": "Machine Learning Engineer,\nAI Enthusiast &\nCaffeine-Fueled Coder",
+    "heroDescription": "Hey, I'm Harshita Phadtare. I love building models, automating tasks and give back to the developer community through open-source contributions.",
+    "bio": [
+  "I'm a curious and driven Machine Learning enthusiast from Mumbai, passionate about turning data into meaningful, intelligent solutions. I enjoy exploring the intersection of AI, deep learning, and data science to build systems that truly make an impact.",
+  "My fascination with AI began during my studies, where I discovered how algorithms can uncover patterns and drive smarter decisions. When I’m not experimenting with neural networks or analyzing data, I love contributing to open-source projects and sharing insights through blogs and discussions."
+]
+
+  },
+  "socialLinks": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/harshitaphadtare"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/harshitaphadtare"
+    },
+    {
+      "name": "Medium",
+      "url": "https://medium.com/@hphadtare02"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:harshita.codewiz@gmail.com"
+    }
+  ],
+  "techStack": [
+    "Python",
+    "TensorFlow",
+    "Scikit-learn",
+    "Keras",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "Machine Learning",
+    "Deep Learning",
+    "NLP",
+    "Docker",
+    "MLOps",
+    "PostgreSQL",
+    "MongoDB",
+    "React",
+    "Tailwind CSS",
+    "JavaScript",
+    "Express.js",
+    "Git",
+    "CI/CD"
+  ],
+  "photoGallery": [
+    {
+      "url": "https://drive.google.com/file/d/1QDh1CGTuL9BkN2K80qFPCJokWPwSZruB/view?usp=drive_link"
+    },
+    {
+        "url": "https://drive.google.com/file/d/17Eg6NNXW5fZTipK6s4X-l7MrRlSnHyPO/view?usp=drive_link"
+    },
+    {
+        "url": "https://drive.google.com/file/d/1Jrx9aoN4R6LhSQo0Wwcx53lxrErruGHz/view?usp=drive_link"
+    },
+    {
+        "url": "https://drive.google.com/file/d/12LAyakdTKO8nyBeJ0739-PJ3F9eXbyAz/view?usp=drive_link"
+    },
+    {
+        "url":"https://drive.google.com/file/d/1v6EmChfb-yh1xQn1FbScXX5r8GztPOLD/view?usp=drive_link"
+    },
+    {
+        "url":"https://drive.google.com/file/d/1Ok65MfXTGDq8plaiE_WipNrQUh9gg0me/view?usp=drive_link"
+    },
+    {
+        "url":"https://drive.google.com/file/d/135p-5ansWtKe-K_Mc2HdrcraTrK7jih3/view?usp=drive_link"
+    },
+    {
+        "url":"https://drive.google.com/file/d/1BCxwv4on1_TdXZLBHAMyLFI9xaLYASrp/view?usp=drive_link"
+    },
+    {
+        "url":"https://drive.google.com/file/d/18-J7kacM5BDQlUz4S4bkr8JmMN3Xh5TY/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/1TAXEMttHb1xQGbzN-n1G-JwBTlVoULUR/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/11YfzYksK67wEVjd_mnmzQTF_AA_0VZb1/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/1mUY60aMasW-nIV9pnT3EwjV6st7c7BF8/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/1lZHdN4AlAegjcJOnujaLAoxT9QOLJn5E/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/1tllQ3ttkTMD_SiXgyTd2d_ku4DWXbgg6/view?usp=drive_link"
+    },{
+        "url":"https://drive.google.com/file/d/17iHDkjxARj08qfib3hASOE_Vvc0Twt_V/view?usp=drive_link"
+    }
+  ],
+  "projects": [
+    {
+      "id": "revu-sentiment-analysis",
+      "title": "Revu: Customer Insight & Analysis Platform",
+      "description": "Developed a full-stack web application designed to aggregate and analyze publicly available customer feedback, transforming unstructured text into structured business intelligence. High-quality summarization powered by configurable LLM usage (Gemini) with TextRank as a fast, offline fallback for deterministic summarization.",
+      "allTechnologies": ["Python", "BeautifulSoup", "Apify API", "React", "Docker", "MongoDB", "Redis", "Tailwind CSS", "FastAPI"],
+      "badges": [
+        { "text": "MLOps", "color": "rgba(59, 130, 246, 0.15)" },
+        { "text": "Web Scraping", "color": "rgba(251, 191, 36, 0.2)" },
+        { "text": "LLM",      "color": "rgba(125, 95, 255, 0.15)" }
+      ],
+      "date": "September 2025",
+      "image": "https://drive.google.com/file/d/1sn6XKt1Zk9q8ivrGtj33sPNGqit3T23R/view?usp=drive_link",
+      "githubUrl": "https://github.com/harshitaphadtare/Revu",
+      "videoUrl": "https://drive.google.com/file/d/18Q2GBN3S2xFq8NidbFfoq3bq_q1p3AdR/view?usp=drive_link",
+      "stars": 3,
+      "forks": 12,
+      "contributors": 5,
+  "detailedDescription": "Revu was built to help e-commerce businesses make sense of vast amounts of customer feedback scattered across platforms like Amazon and Flipkart. Manually reviewing and categorizing this data was slow and inconsistent, so I developed Revu to automatically collect, analyze, and summarize reviews into structured business insights.\n\nThe platform combines intelligent web scraping and LLM to deliver sentiment analysis, trend identification, and AI-generated summaries. Customer reviews are aggregated using Playwright and BeautifulSoup, while Apify API handles proxy rotation and IP management for reliable large-scale scraping. Summarization is powered by Gemini API with a deterministic TextRank fallback for offline scenarios. The frontend, developed in React, provides interactive visual dashboards and summary reports that help businesses quickly identify common themes and product perceptions.\n\nThe backend is built with Python and FastAPI for high-performance data processing and modular design. The entire system is containerized with Docker and integrated with GitHub Actions for CI/CD automation, ensuring code quality through Pytest-based test suites and seamless deployment pipelines.",
+  
+  "myContribution": "I led the end-to-end design and implementation of Revu, covering everything from backend APIs to frontend visualization. I built the review scraping engine using Playwright and integrated Apify API to manage IP rotation and prevent blocking during large-scale data extraction. I implemented the NLP pipeline for sentiment classification and summary generation, integrating Gemini API for configurable LLM usage.\n\nOn the DevOps side, I containerized the application with Docker, set up CI/CD pipelines via GitHub Actions, and enforced code quality using automated testing frameworks. I also designed and developed the React-based dashboard, creating intuitive interfaces for tracking sentiment trends and viewing AI-generated insights.",
+  
+  "challenges": "One of the most difficult challenges was handling large-scale web scraping without triggering rate limits or IP bans from platforms like Amazon and Flipkart. Initial scraping attempts frequently failed, so I integrated Apify API to manage proxy rotation and headless browsing at scale, making the pipeline significantly more stable.\n\nAnother challenge involved ensuring summarization accuracy across varying review styles and product categories. To address this, I fine-tuned the NLP pipeline to combine deterministic summarization (TextRank) with dynamic, LLM-powered summaries (Gemini), allowing Revu to balance precision, speed, and interpretability.",
+
+      "mediumUrl": ""
+    },
+    {
+      "id": "travel-time-prediction",
+      "title": "GoPredict: Travel Time Prediction System",
+      "description": "Developed a full-stack ML application to predict travel times in NYC and San Francisco using historical taxi trip data and advanced geospatial feature engineering. Achieved R² of 0.85+ with 15 to 20% improvement over baseline distance-based models, enabling optimized route planning and traffic management.",
+      "allTechnologies": ["Python", "XGBoost", " Scikit-learn", "React", "Google Maps API", "Meteostat API", "FastAPI", "Tailwind CSS"],
+      "badges": [
+        { "text": "Machine Learning", "color": "rgba(147, 51, 234, 0.15)" },
+        { "text": "Geospatial", "color": "rgba(16, 185, 129, 0.15)" },
+        { "text": "Open Sourced","color": "rgba(251, 191, 36, 0.2)" }
+      ],
+      "date": "August 2025",
+      "image": "https://drive.google.com/file/d/1UNKfGhz7GV0LdqiLhsQ59hXjYskonb7i/view?usp=drive_link",
+      "githubUrl": "https://github.com/harshitaphadtare/GoPredict",
+      "videoUrl": "https://drive.google.com/file/d/176MJBBYsBeQWv0B8x5CS-N7CG3uPuwBf/view?usp=drive_link",
+      "stars": 13,
+      "forks": 21,
+      "contributors": 15,
+        "detailedDescription": "GoPredict is a full-stack machine learning application built to predict travel times in complex urban environments like New York City and San Francisco by leveraging rich historical taxi trip data and advanced geospatial feature engineering. Traditional distance-based ETA models fail to capture temporal, traffic, weather, and routing intricacies—GoPredict fills that gap by combining regression modelling with real-world context.\n\nThe system ingests pickup and drop-off coordinates, timestamps, and external factors (weather via Meteostat API, routing via Google Maps API) and engineers features such as Manhattan distance, time-of-day, day-of-week, clustering of origin-destination hotspots, and precipitation. Using Python and Scikit-learn/XGBoost the project achieved an R² > 0.85 — about 15-20 % better than a simple distance baseline. The front-end, built with React, visualises model predictions and allows interactive exploration of trip scenarios in major cities.\n\nGoPredict is open-sourced on GitHub (12 stars, 21 forks) and demonstrates community adoption and collaboration. The modular architecture enables both experimentation and deployment of the ML pipeline, making it suitable for real-world route optimisation, logistics planning and traffic-management applications.",
+        
+        "myContribution": "I led the full stack workflow for GoPredict: designing data ingestion, feature engineering and modelling in Python; integrating external APIs (Google Maps, Meteostat) for enriched features; training and tuning an XGBoost regression model that surpassed the baseline by ~20 %; developing a React front-end to visualise predictions; and deploying the system on GitHub with documentation, tests and open-source guidelines.",
+        
+        "challenges": "One of the major challenges was capturing the variability of urban travel times — two trips covering the same distance could take vastly different durations depending on time of day, traffic and weather. I addressed this by engineering temporal features (hour, weekday, weekend), clustering high-traffic hotspots and integrating weather and routing APIs to enrich modelling context.\n\nAnother challenge was balancing model complexity and interpretability while achieving strong performance. While advanced models like XGBoost delivered high accuracy, I also ensured that the feature engineering pipeline remained modular and transparent, and built the front-end so that stakeholders could understand predictions and explore ‘what-if’ scenarios interactively.",
+      "mediumUrl": "https://medium.com/@hphadtare02/how-machine-learning-predicts-trip-duration-just-like-uber-zomato-91f7db6e9ce9"
+    },
+    {
+      "id": "invoase-automation",
+      "title": "Invoase: Invoice Automation Application",
+      "description": "Built a full-stack web application to digitize and streamline the reimbursement and sponsorship invoice process, cutting approval time from 4 to 5 days to just 3 to 4 hours. Engineered a multi-panel interface for students and accountants, allowing seamless invoice submission, approval tracking, and status visibility.",
+      "allTechnologies": ["MongoDB", "Node.js", "OpenAI API", "WebSockets", "MongoDB", "Redis", "React", "Node.js", "Express", "Docker", "ESLint", "Tailwind CSS"],
+      "badges": [
+        { "text": "Full Stack", "color": "rgba(59, 130, 246, 0.15)" },
+        { "text": "DevTools", "color": "rgba(251, 191, 36, 0.2)" },
+        { "text": "AI Integration", "color": "rgba(16, 185, 129, 0.15)" }
+      ],
+      "date": "Jul 2024",
+      "image": "https://drive.google.com/file/d/1Dg58z6E60_bYmECPEk2x94VlsDJ3ZhBG/view?usp=drive_link",
+      "images": [
+        "/assets/invoase/1.png",
+        "/assets/invoase/2.png",
+        "/assets/invoase/3.png",
+        "/assets/invoase/4.png",
+        "/assets/invoase/5.png",
+        "/assets/invoase/6.png"
+      ],
+      "githubUrl": "https://github.com/harshitaphadtare/Invoase",
+      "videoUrl": "",
+      "detailedDescription": "CodeSync revolutionizes the code review process by combining AI-powered analysis with real-time collaboration tools. The platform integrates seamlessly with GitHub and GitLab, automatically analyzing pull requests and providing intelligent suggestions for improvements.\n\nThe AI engine, powered by GPT-4, can identify potential bugs, suggest performance optimizations, check for security vulnerabilities, and ensure code adheres to best practices. The platform also includes custom static analysis tools for common patterns and anti-patterns specific to different programming languages and frameworks.",
+      "myContribution": "I architected and built the entire platform using Next.js and TypeScript. I integrated the OpenAI API to provide intelligent code analysis and implemented custom prompts that understand different coding contexts and frameworks.\n\nI built the real-time collaboration features using WebSockets, allowing multiple reviewers to comment and discuss code simultaneously. I also created the GitHub/GitLab integration using their respective APIs, enabling seamless workflow integration.",
+      "challenges": "Integrating AI into the code review process required careful prompt engineering to ensure relevant and accurate suggestions. I spent significant time crafting prompts that provide context-aware recommendations without overwhelming users with false positives.\n\nScaling the real-time collaboration features was challenging. I implemented Redis as a message broker and session store to handle multiple concurrent review sessions efficiently. This architecture reduced latency and improved the overall user experience."
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Machine Learning Engineer",
+      "company": "Tech Company",
+      "dates": "Jan 2024 - Present",
+      "description": [
+        "Developed and deployed ML models that improved prediction accuracy by 25%",
+        "Built scalable data pipelines processing 10M+ records daily using Apache Spark",
+        "Led cross-functional team of 5 engineers in implementing real-time recommendation system"
+      ],
+      "technologies": ["Python", "TensorFlow", "PyTorch", "AWS", "Docker"]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Startup Inc",
+      "dates": "Jun 2022 - Dec 2023",
+      "description": [
+        "Architected and implemented microservices architecture serving 1M+ users",
+        "Reduced API response time by 40% through optimization and caching strategies",
+        "Mentored junior developers and conducted code reviews"
+      ],
+      "technologies": ["Python", "Django", "PostgreSQL", "Redis", "Kubernetes"]
+    },
+    {
+      "title": "Machine Learning Intern",
+      "company": "AI Research Lab",
+      "dates": "May 2022 - Aug 2022",
+      "description": [
+        "Developed and trained a model to improve recommendation accuracy by 15%",
+        "Implemented data preprocessing pipeline reducing training time by 30%",
+        "Collaborated with research team on cutting-edge NLP projects"
+      ],
+      "technologies": ["Python", "TensorFlow", "Scikit-learn", "Pandas", "NumPy"]
+    },
+    {
+      "title": "Data Science Intern",
+      "company": "Analytics Corp",
+      "dates": "Jan 2022 - Apr 2022",
+      "description": [
+        "Built predictive models for customer churn with 85% accuracy",
+        "Created interactive dashboards for business intelligence reporting",
+        "Performed A/B testing analysis resulting in 12% conversion increase"
+      ],
+      "technologies": ["Python", "Scikit-learn", "Tableau", "SQL", "Pandas"]
+    }
+  ],
+  "contributions": [
+    {
+      "id": 1,
+      "repo": "Perspective",
+      "stars": 26,
+      "title": "Feat: Added User Authentication and Authorization",
+      "description": "Perspective analyzes your news or social feed and presents credible counter-narratives to help you understand different viewpoints.",
+      "status": "merged",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "additions": 797,
+      "deletions": 24,
+      "files": 22,
+      "createdDate": "Nov 3, 2024",
+      "mergedDate": "Nov 10, 2024",
+      "repoUrl": "https://github.com/example/perspective",
+      "prUrl": "https://github.com/example/perspective/pull/123"
+    },
+    {
+      "id": 2,
+      "repo": "TensorFlow",
+      "stars": 180000,
+      "title": "Fix: Resolved memory leak in model.fit() for large datasets",
+      "description": "An end-to-end open source machine learning platform for everyone. TensorFlow makes it easy to create ML models.",
+      "status": "merged",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "additions": 156,
+      "deletions": 89,
+      "files": 8,
+      "createdDate": "Oct 15, 2024",
+      "mergedDate": "Oct 22, 2024",
+      "repoUrl": "https://github.com/tensorflow/tensorflow",
+      "prUrl": "https://github.com/tensorflow/tensorflow/pull/456"
+    },
+    {
+      "id": 3,
+      "repo": "React",
+      "stars": 220000,
+      "title": "Docs: Updated hooks documentation with advanced patterns",
+      "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+      "status": "merged",
+      "language": "JavaScript",
+      "languageColor": "#f1e05a",
+      "additions": 432,
+      "deletions": 12,
+      "files": 15,
+      "createdDate": "Sep 28, 2024",
+      "mergedDate": "Oct 5, 2024",
+      "repoUrl": "https://github.com/facebook/react",
+      "prUrl": "https://github.com/facebook/react/pull/789"
+    },
+    {
+      "id": 4,
+      "repo": "PyTorch",
+      "stars": 75000,
+      "title": "Feature: Added support for mixed precision training",
+      "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration.",
+      "status": "open",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "additions": 623,
+      "deletions": 45,
+      "files": 18,
+      "createdDate": "Nov 1, 2024",
+      "repoUrl": "https://github.com/pytorch/pytorch",
+      "prUrl": "https://github.com/pytorch/pytorch/pull/321"
+    },
+    {
+      "id": 5,
+      "repo": "Next.js",
+      "stars": 115000,
+      "title": "Perf: Optimized server-side rendering for large pages",
+      "description": "The React Framework for Production. Next.js gives you the best developer experience.",
+      "status": "merged",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "additions": 234,
+      "deletions": 67,
+      "files": 12,
+      "createdDate": "Aug 20, 2024",
+      "mergedDate": "Aug 28, 2024",
+      "repoUrl": "https://github.com/vercel/next.js",
+      "prUrl": "https://github.com/vercel/next.js/pull/654"
+    },
+    {
+      "id": 6,
+      "repo": "Scikit-learn",
+      "stars": 58000,
+      "title": "Feature: Implemented new ensemble learning algorithm",
+      "description": "Machine learning in Python. Simple and efficient tools for predictive data analysis.",
+      "status": "merged",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "additions": 512,
+      "deletions": 34,
+      "files": 9,
+      "createdDate": "Jul 12, 2024",
+      "mergedDate": "Jul 25, 2024",
+      "repoUrl": "https://github.com/scikit-learn/scikit-learn",
+      "prUrl": "https://github.com/scikit-learn/scikit-learn/pull/987"
+    },
+    {
+      "id": 7,
+      "repo": "Pandas",
+      "stars": 42000,
+      "title": "Fix: Improved performance of groupby operations",
+      "description": "Flexible and powerful data analysis / manipulation library for Python.",
+      "status": "merged",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "additions": 189,
+      "deletions": 56,
+      "files": 7,
+      "createdDate": "Jun 5, 2024",
+      "mergedDate": "Jun 18, 2024",
+      "repoUrl": "https://github.com/pandas-dev/pandas",
+      "prUrl": "https://github.com/pandas-dev/pandas/pull/432"
+    },
+    {
+      "id": 8,
+      "repo": "Keras",
+      "stars": 61000,
+      "title": "Docs: Enhanced tutorial for custom training loops",
+      "description": "Deep Learning for humans. Keras is a deep learning API written in Python.",
+      "status": "merged",
+      "language": "Python",
+      "languageColor": "#3572A5",
+      "additions": 345,
+      "deletions": 23,
+      "files": 11,
+      "createdDate": "May 10, 2024",
+      "mergedDate": "May 20, 2024",
+      "repoUrl": "https://github.com/keras-team/keras",
+      "prUrl": "https://github.com/keras-team/keras/pull/765"
+    }
+  ]
+}
