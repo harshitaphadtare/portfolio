@@ -11,6 +11,7 @@ interface NavigationProps {
   setCurrentPage: (
     page: "home" | "about" | "opensource" | "project",
   ) => void;
+  onRequestScrollTo?: (href: string) => void;
 }
 
 export function Navigation({
@@ -18,6 +19,7 @@ export function Navigation({
   toggleTheme,
   currentPage,
   setCurrentPage,
+  onRequestScrollTo,
 }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -84,13 +86,22 @@ export function Navigation({
       window.scrollTo({ top: 0, behavior: "smooth" });
       setActiveSection("");
     } else {
-      if (currentPage !== "home") {
-        setCurrentPage("home");
-        setTimeout(() => {
-          if (href) scrollToSection(href);
-        }, 100);
-      } else {
-        if (href) scrollToSection(href);
+      if (href) {
+        // Prefer App-level handler to ensure scroll happens after Home mounts
+        if (onRequestScrollTo) {
+          onRequestScrollTo(href);
+          if (currentPage !== "home") {
+            setCurrentPage("home");
+          }
+        } else {
+          // Fallback to local behavior if handler is not provided
+          if (currentPage !== "home") {
+            setCurrentPage("home");
+            setTimeout(() => scrollToSection(href), 300);
+          } else {
+            scrollToSection(href);
+          }
+        }
       }
       setActiveSection(label);
     }
@@ -232,15 +243,16 @@ export function Navigation({
           <div className="flex items-center gap-2">
             <motion.button
               onClick={toggleTheme}
-              className="w-10 h-10 rounded-full transition-colors duration-200 flex items-center justify-center"
+              className="w-10 h-10 rounded-full transition-colors duration-200 flex items-center justify-center shadow-lg"
               style={{
-                backgroundColor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
-                color: "var(--nav-active-bg)",
-                cursor: "pointer",
+                backgroundColor: 'var(--card)',
+                color: 'var(--nav-active-bg)',
+                cursor: 'pointer',
+                border: '1px solid var(--border)'
               }}
-              whileHover={{ scale: 1.05, backgroundColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)" }}
+              whileHover={{ scale: 1.05, backgroundColor: 'var(--nav-active-bg)', color: 'var(--nav-active-text)' }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               aria-label="Toggle theme"
             >
               <motion.div initial={false} animate={{ rotate: isDark ? 0 : 180 }} transition={{ duration: 0.3 }}>
@@ -250,11 +262,16 @@ export function Navigation({
 
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 rounded-full transition-colors duration-200 flex items-center justify-center"
-              style={{ backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)", color: "var(--nav-active-bg)", cursor: "pointer" }}
-              whileHover={{ scale: 1.05, backgroundColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" }}
+              className="lg:hidden w-10 h-10 rounded-full transition-colors duration-200 flex items-center justify-center shadow-lg"
+              style={{
+                backgroundColor: 'var(--card)',
+                color: 'var(--nav-active-bg)',
+                cursor: 'pointer',
+                border: '1px solid var(--border)'
+              }}
+              whileHover={{ scale: 1.05, backgroundColor: 'var(--nav-active-bg)', color: 'var(--nav-active-text)' }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

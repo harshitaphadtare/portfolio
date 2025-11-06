@@ -50,7 +50,7 @@ export function ExperienceSection() {
 
   return (
     <section
-      className="py-12 sm:py-20 px-4 sm:px-6 md:px-8"
+      className="pt-16 pb-24 sm:pt-20 sm:pb-28 px-4 sm:px-6 md:px-10 lg:px-16"
       id="experience"
     >
       <div className="max-w-6xl mx-auto">
@@ -142,7 +142,7 @@ export function ExperienceSection() {
           </motion.div>
 
           {/* Timeline Entries */}
-          <div className="relative">
+          <div className="relative space-y-6 sm:space-y-8">
             {experiences.map((experience, index) => (
               <div
                 key={index}
@@ -157,6 +157,8 @@ export function ExperienceSection() {
                 />
               </div>
             ))}
+            {/* Extra spacer for mobile to ensure separation from footer */}
+            <div className="h-4 sm:h-2" aria-hidden="true" />
           </div>
         </div>
       </div>

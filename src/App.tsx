@@ -16,6 +16,7 @@ export default function App() {
   const [mounted, setMounted] = useState(false);
   const [currentPage, setCurrentPage] = useState<"home" | "about" | "opensource" | "project">("home");
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [pendingAnchor, setPendingAnchor] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -49,6 +50,15 @@ export default function App() {
     setSelectedProjectId(projectId);
     setCurrentPage("project");
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Navigate to Home and then scroll to a specific section id (e.g., "projects" or "experience")
+  const handleRequestScrollTo = (href: string) => {
+    const id = href.replace(/^#/, "");
+    if (currentPage !== "home") {
+      setCurrentPage("home");
+    }
+    setPendingAnchor(id);
   };
 
   const handleBackToProjects = () => {
@@ -87,6 +97,36 @@ export default function App() {
     ? projects.findIndex((p) => p.id === selectedProjectId)
     : -1;
 
+  // After switching to Home, perform the scroll when the element exists
+  useEffect(() => {
+    if (currentPage !== "home" || !pendingAnchor) return;
+
+    let attempts = 0;
+    const maxAttempts = 20; // ~1s total if interval=50ms
+    const interval = 50;
+
+    const tryScroll = () => {
+      const el = document.getElementById(pendingAnchor!);
+      if (el) {
+        const offsetTop = el.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
+        setPendingAnchor(null);
+        return;
+      }
+      attempts++;
+      if (attempts < maxAttempts) {
+        setTimeout(tryScroll, interval);
+      } else {
+        // Give up after retries
+        setPendingAnchor(null);
+      }
+    };
+
+    // Kick off after a tick so Home can mount
+    const timeout = setTimeout(tryScroll, 0);
+    return () => clearTimeout(timeout);
+  }, [currentPage, pendingAnchor]);
+
   if (!mounted) {
     return null;
   }
@@ -102,6 +142,7 @@ export default function App() {
         toggleTheme={toggleTheme}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        onRequestScrollTo={handleRequestScrollTo}
       />
 
       {/* Scroll to Top Button */}

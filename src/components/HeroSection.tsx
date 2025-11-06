@@ -27,11 +27,14 @@ export function HeroSection({ onLearnMore }: HeroSectionProps) {
           <h1
             className="relative px-4 leading-tight"
             style={{
-              fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+              // Smaller on phones, scales up smoothly to desktop
+              fontSize: "clamp(1.6rem, 6.2vw, 3.25rem)",
               fontWeight: "800",
               letterSpacing: "-0.04em",
-              lineHeight: "1.15",
+              lineHeight: "1.12",
               color: "var(--hero-title)",
+              wordBreak: 'break-word',
+              overflowWrap: 'anywhere'
             }}
           >
             {personal.heroTitle.split('\n').map((line, i) => (
@@ -90,17 +93,18 @@ export function HeroSection({ onLearnMore }: HeroSectionProps) {
             delay: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="pt-2 flex items-center justify-center gap-4 px-4"
+          className="pt-2 flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4"
         >
           <motion.button
             onClick={onLearnMore}
-            className="group relative px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg overflow-hidden transition-all duration-300 font-quantico"
+            className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-lg overflow-hidden transition-all duration-300 font-quantico"
             style={{
               backgroundColor: "var(--cta-button-bg)",
               color: "var(--cta-button-text)",
-              fontWeight: "600",
-              fontSize: "clamp(0.875rem, 1.5vw, 1rem)",
+              fontWeight: "700",
+              fontSize: "clamp(0.85rem, 1.7vw, 1.05rem)",
               cursor: "pointer",
+              letterSpacing: '.01em'
             }}
             whileHover={{
               scale: 1.02,

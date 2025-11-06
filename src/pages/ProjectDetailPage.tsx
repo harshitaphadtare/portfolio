@@ -47,14 +47,8 @@ export function ProjectDetailPage({
   hasNext,
 }: ProjectDetailPageProps) {
   const slides = useMemo(() => {
-    const imgs = (project.images ?? []).filter(Boolean);
-    console.log('=== PROJECT DETAIL DEBUG ===');
-    console.log('Project ID:', project.id);
-    console.log('Project Title:', project.title);
-    console.log('Images array:', imgs);
-    console.log('Number of images:', imgs.length);
-    console.log('===========================');
-    return imgs;
+    // Compute list of valid image sources; debug logs removed for production
+    return (project.images ?? []).filter(Boolean);
   }, [project.images, project.id, project.title])
 
   const [slideIndex, setSlideIndex] = useState(0)
@@ -71,6 +65,16 @@ export function ProjectDetailPage({
     if (!canNavigate) return
     setSlideIndex((prev) => (prev - 1 + slides.length) % slides.length)
   }
+  
+  // When switching between projects, reset carousel and scroll to top
+  useEffect(() => {
+    setSlideIndex(0);
+    // Defer to the next tick to allow layout to settle before scrolling
+    const id = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0);
+    return () => clearTimeout(id);
+  }, [project.id]);
   
   // Auto-advance slides every 7 seconds; pause when hovered or if single slide.
   useEffect(() => {
@@ -110,11 +114,13 @@ export function ProjectDetailPage({
           <h1
             className="mb-6 font-michroma"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3rem)",
+              // Smaller on mobile, moderate on tablet, max smaller than before on desktop
+              fontSize: "clamp(1.5rem, 4.2vw, 2.5rem)",
               fontWeight: "800",
               color: "var(--section-title)",
               letterSpacing: "-0.03em",
-              lineHeight: "1.2",
+              lineHeight: "1.15",
+              wordBreak: 'break-word'
             }}
           >
             {project.title}
@@ -127,11 +133,11 @@ export function ProjectDetailPage({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
+                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full flex items-center gap-1.5 font-quantico"
                 style={{
                   border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
-                  fontSize: "0.8125rem",
+                  fontSize: "clamp(0.7rem, 1.6vw, 0.8125rem)",
                   fontWeight: "600",
                   backgroundColor: "transparent",
                   cursor: "pointer",
@@ -152,11 +158,11 @@ export function ProjectDetailPage({
             {/* Stars Button */}
             {project.stars !== undefined && (
               <motion.div
-                className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
+                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full flex items-center gap-1.5 font-quantico"
                 style={{
                   border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
-                  fontSize: "0.8125rem",
+                  fontSize: "clamp(0.7rem, 1.6vw, 0.8125rem)",
                   fontWeight: "600",
                   backgroundColor: "transparent",
                   cursor: "default",
@@ -176,11 +182,11 @@ export function ProjectDetailPage({
             {/* Forks Button */}
             {project.forks !== undefined && (
               <motion.div
-                className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
+                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full flex items-center gap-1.5 font-quantico"
                 style={{
                   border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
-                  fontSize: "0.8125rem",
+                  fontSize: "clamp(0.7rem, 1.6vw, 0.8125rem)",
                   fontWeight: "600",
                   backgroundColor: "transparent",
                   cursor: "default",
@@ -200,11 +206,11 @@ export function ProjectDetailPage({
             {/* Contributors Button */}
             {project.contributors !== undefined && (
               <motion.div
-                className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
+                className="px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full flex items-center gap-1.5 font-quantico"
                 style={{
                   border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
-                  fontSize: "0.8125rem",
+                  fontSize: "clamp(0.7rem, 1.6vw, 0.8125rem)",
                   fontWeight: "600",
                   backgroundColor: "transparent",
                   cursor: "default",
@@ -237,7 +243,9 @@ export function ProjectDetailPage({
               style={{
                 boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
                 border: "1px solid var(--border)",
-                height: "min(70vh, 720px)",
+                // Responsive height: compact on mobile, grows substantially on desktop to preserve near-original image height
+                // Target: ~40vh on small screens, scale with vw, up to 95vh (capped at 1200px) on large displays
+                height: "min(clamp(40vh, 35vh + 20vw, 95vh), 1200px)",
               }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
@@ -260,12 +268,7 @@ export function ProjectDetailPage({
                         <img
                           src={src}
                           alt={`${project.title} slide ${i + 1}`}
-                          className="max-w-full max-h-full w-auto h-auto object-contain"
-                          onLoad={() => console.log(`✓ Loaded: ${src}`)}
-                          onError={(e) => {
-                            console.error(`✗ Failed: ${src}`);
-                            console.error('Attempted URL:', e.currentTarget.src);
-                          }}
+                          className="w-full h-full max-w-full max-h-full object-contain"
                         />
                       </div>
                     ))}
@@ -361,7 +364,7 @@ export function ProjectDetailPage({
               <img
                 src={project.image}
                 alt={project.title}
-                className="max-w-full max-h-full w-auto h-auto object-contain"
+                className="w-full h-full max-w-full max-h-full object-contain"
               />
             </div>
           </motion.div>

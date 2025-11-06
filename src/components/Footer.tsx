@@ -5,7 +5,7 @@ export function Footer() {
 
   return (
     <footer
-      className="relative z-10 border-t"
+      className="relative z-10 border-t mt-8 sm:mt-12"
       style={{
         borderColor: "var(--border)",
         backgroundColor: "var(--background)",

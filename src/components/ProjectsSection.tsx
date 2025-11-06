@@ -11,7 +11,7 @@ interface ProjectsSectionProps {
 export function ProjectsSection({ onProjectClick }: ProjectsSectionProps) {
   return (
     <section
-      className="py-24 px-10 sm:px-8 md:px-12 lg:px-16"
+      className="py-24 px-4 sm:px-6 md:px-10 lg:px-16"
       id="projects"
     >
       <div className="max-w-6xl mx-auto">
@@ -41,7 +41,7 @@ export function ProjectsSection({ onProjectClick }: ProjectsSectionProps) {
         </motion.div>
 
         {/* Projects List - Centered */}
-        <div>
+        <div className="space-y-24">
           {projects.map((project, index) => (
             <ProjectCard
               key={index}

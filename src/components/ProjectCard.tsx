@@ -49,10 +49,10 @@ export function ProjectCard({
       className="mb-20 last:mb-0"
     >
       {/* Container - Stack on mobile, row on desktop */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+  <div className="flex flex-col md:flex-row gap-10 md:gap-12 items-start">
         {/* Image - 400x280 Rectangle with Border & Padding */}
         <motion.div
-          className={`w-full md:w-[550px] flex-shrink-0 ${
+          className={`w-full md:w-[520px] lg:w-[550px] flex-shrink-0 ${
             side === "right" ? "md:order-2" : "md:order-1"
           }`}
           whileHover={{ scale: 1.03 }}
@@ -83,7 +83,7 @@ export function ProjectCard({
                   return withBase
                 })() as any}
                 alt={title}
-                className="w-auto max-w-full h-auto max-h-[320px] object-contain bg-[var(--nav-bg)] mx-auto"
+                className="w-full max-w-full h-auto max-h-[320px] object-contain bg-[var(--nav-bg)] mx-auto"
               />
               
               {/* View Project Badge Following Cursor */}
@@ -121,7 +121,7 @@ export function ProjectCard({
         >
           {/* Title */}
           <motion.h3
-            className="mb-3 font-quantico"
+            className="pt-2 mb-3 font-quantico"
             style={{
               fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
               fontWeight: "700",
