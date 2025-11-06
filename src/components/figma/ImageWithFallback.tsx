@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 // "/assets/invoase/1.png" can be resolved at runtime.
 const ASSET_URLS = import.meta.glob('/src/assets/**/*', {
   eager: true,
-  as: 'url',
+  query: '?url',
+  import: 'default',
 }) as Record<string, string>
 
 const ERROR_IMG_SRC =
@@ -38,7 +39,7 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
     return undefined
   }
 
-  // Return possible direct URL variants for Google Drive / common cases.
+  // Return possible URL variants for local assets and public folder paths.
   const getUrlCandidates = (maybeUrl?: string | number | readonly string[] | null) => {
     if (!maybeUrl || typeof maybeUrl !== 'string') return [maybeUrl as any]
 
@@ -50,29 +51,23 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
       candidates.push(localResolved)
     }
 
-    // If it's a Drive file/d/<id>/view URL
-    const fileIdMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
-    if (fileIdMatch && fileIdMatch[1]) {
-      const id = fileIdMatch[1]
-      // Prefer lightweight thumbnails first for faster perceived load
-      candidates.push(`https://drive.google.com/thumbnail?id=${id}&sz=w1600`)
-      candidates.push(`https://drive.google.com/uc?export=view&id=${id}`)
-      candidates.push(`https://drive.googleusercontent.com/uc?export=view&id=${id}`)
-      candidates.push(`https://drive.google.com/uc?export=download&id=${id}`)
+    // If this is a public asset path from /public (absolute or relative),
+    // also create a BASE_URL-prefixed candidate. This covers deployments under
+    // sub-paths (e.g., GitHub Pages) and both "/invoase/1.png" and "invoase/1.png" forms.
+    if (!localResolved && !/^https?:\/\//i.test(url) && !/^data:/i.test(url)) {
+      const base = (import.meta as any).env?.BASE_URL ?? '/'
+      const normalizedUrl = url.replace(/^\/+/, '')
+      const withBase = (base.endsWith('/') ? base : base + '/') + normalizedUrl
+      // Try the original relative first (dev and some hosts prefer this)
+      candidates.push(url)
+      // Then try BASE_URL-prefixed
+      if (withBase !== url) candidates.push(withBase)
+      // And finally absolute-from-root
+      const absoluteRoot = '/' + normalizedUrl
+      if (absoluteRoot !== url) candidates.push(absoluteRoot)
     }
 
-    // If it's a drive open?id=<id> style
-    const openIdMatch = url.match(/[?&]id=([a-zA-Z0-9_-]+)/)
-    if (openIdMatch && openIdMatch[1]) {
-      const id = openIdMatch[1]
-      // Prefer lightweight thumbnails first
-      candidates.push(`https://drive.google.com/thumbnail?id=${id}&sz=w1600`)
-      candidates.push(`https://drive.google.com/uc?export=view&id=${id}`)
-      candidates.push(`https://drive.googleusercontent.com/uc?export=view&id=${id}`)
-      candidates.push(`https://drive.google.com/uc?export=download&id=${id}`)
-    }
-
-    // If no Drive patterns matched, assume original is already a direct URL and use as-is
+    // If no local asset was resolved, use the original URL as-is
     if (candidates.length === 0) {
       candidates.push(url)
     }

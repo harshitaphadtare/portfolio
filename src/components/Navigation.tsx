@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import profileImage from "../assets/memoji.png";
+
+const profileImage = "/memoji.png";
 
 interface NavigationProps {
   isDark: boolean;

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import data from "../assets/info.json";
+import data from "../info.json";
 
 interface HeroSectionProps {
   onLearnMore?: () => void;

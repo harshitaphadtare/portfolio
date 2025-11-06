@@ -7,8 +7,7 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
-import React, { useMemo, useState } from "react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import React, { useEffect, useMemo, useState } from "react";
 
 interface ProjectDetailPageProps {
   project: {
@@ -47,10 +46,21 @@ export function ProjectDetailPage({
   hasPrevious,
   hasNext,
 }: ProjectDetailPageProps) {
-  const slides = useMemo(() => (project.images ?? []).filter(Boolean), [project.images])
+  const slides = useMemo(() => {
+    const imgs = (project.images ?? []).filter(Boolean);
+    console.log('=== PROJECT DETAIL DEBUG ===');
+    console.log('Project ID:', project.id);
+    console.log('Project Title:', project.title);
+    console.log('Images array:', imgs);
+    console.log('Number of images:', imgs.length);
+    console.log('===========================');
+    return imgs;
+  }, [project.images, project.id, project.title])
+
   const [slideIndex, setSlideIndex] = useState(0)
   const hasSlides = slides.length > 0
   const canNavigate = slides.length > 1
+  const [isHovered, setIsHovered] = useState(false)
 
   const nextSlide = () => {
     if (!canNavigate) return
@@ -61,33 +71,16 @@ export function ProjectDetailPage({
     if (!canNavigate) return
     setSlideIndex((prev) => (prev - 1 + slides.length) % slides.length)
   }
-  // Helper to convert common Google Drive video URLs into an embeddable preview URL
-  const getVideoEmbedUrl = (maybeUrl?: string) => {
-    if (!maybeUrl) return undefined
-    try {
-      // If already looks like a YouTube/embed or other direct embed, return as-is
-      if (/^(https?:)?\/\/(www\.)?(youtube|youtu\.be|player\.vimeo)\./i.test(maybeUrl)) {
-        return maybeUrl
-      }
+  
+  // Auto-advance slides every 7 seconds; pause when hovered or if single slide.
+  useEffect(() => {
+    if (!canNavigate || isHovered) return
+    const id = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % slides.length)
+    }, 7000)
+    return () => clearInterval(id)
+  }, [canNavigate, slides.length, isHovered])
 
-      // Match /file/d/<id>/view or /file/d/<id>/preview
-      const fileIdMatch = maybeUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
-      if (fileIdMatch && fileIdMatch[1]) {
-        return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`
-      }
-
-      // Match open?id=<id>
-      const idMatch = maybeUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/)
-      if (idMatch && idMatch[1]) {
-        return `https://drive.google.com/file/d/${idMatch[1]}/preview`
-      }
-
-      // Fallback: return as provided
-      return maybeUrl
-    } catch (e) {
-      return maybeUrl
-    }
-  }
   // Prefer `technologies`, fall back to `allTechnologies` if missing
   const keyTech = (project.technologies && project.technologies.length
     ? project.technologies
@@ -136,8 +129,7 @@ export function ProjectDetailPage({
                 rel="noopener noreferrer"
                 className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
                 style={{
-                  border:
-                    "2px solid var(--project-button-border)",
+                  border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
                   fontSize: "0.8125rem",
                   fontWeight: "600",
@@ -162,8 +154,7 @@ export function ProjectDetailPage({
               <motion.div
                 className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
                 style={{
-                  border:
-                    "2px solid var(--project-button-border)",
+                  border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
                   fontSize: "0.8125rem",
                   fontWeight: "600",
@@ -187,8 +178,7 @@ export function ProjectDetailPage({
               <motion.div
                 className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
                 style={{
-                  border:
-                    "2px solid var(--project-button-border)",
+                  border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
                   fontSize: "0.8125rem",
                   fontWeight: "600",
@@ -212,8 +202,7 @@ export function ProjectDetailPage({
               <motion.div
                 className="px-4 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 font-quantico"
                 style={{
-                  border:
-                    "2px solid var(--project-button-border)",
+                  border: "2px solid var(--project-button-border)",
                   color: "var(--project-button-text)",
                   fontSize: "0.8125rem",
                   fontWeight: "600",
@@ -233,7 +222,6 @@ export function ProjectDetailPage({
             )}
           </div>
 
-          {/* (Tech pills removed here — tech stack is shown in its own section below) */}
         </motion.div>
 
         {/* Media: prefer images carousel, then video, else fallback image */}
@@ -244,67 +232,90 @@ export function ProjectDetailPage({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            <div className="flex items-center justify-center gap-3 sm:gap-4">
-              {/* Prev Button (outside) */}
-              <button
-                aria-label="Previous image"
-                onClick={prevSlide}
-                disabled={!canNavigate}
-                className="px-3 py-2 rounded-full"
-                style={{
-                  background: "var(--nav-bg)",
-                  border: "1px solid var(--nav-border)",
-                  color: canNavigate ? "var(--text-primary)" : "var(--text-tertiary)",
-                  cursor: canNavigate ? "pointer" : "not-allowed",
-                  opacity: canNavigate ? 1 : 0.6,
-                }}
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <div
-                  className="flex-1 min-w-0 rounded-2xl overflow-hidden w-full bg-[var(--nav-bg)]"
-                  style={{
-                    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
-                    border: "1px solid var(--border)",
-                    height: "min(70vh, 720px)",
-                  }}
-                >
-                  <div className="relative w-full h-full">
-                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+            <div
+              className="rounded-2xl overflow-hidden w-full bg-[var(--nav-bg)] relative"
+              style={{
+                boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+                border: "1px solid var(--border)",
+                height: "min(70vh, 720px)",
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <div className="relative w-full h-full">
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+                  <div
+                    className="h-full flex transition-transform duration-500 ease-out"
+                    style={{
+                      transform: `translateX(-${(slideIndex * 100) / slides.length}%)`,
+                      width: `${slides.length * 100}%`,
+                    }}
+                  >
+                    {slides.map((src, i) => (
                       <div
-                        className="h-full flex transition-transform duration-300"
-                        style={{ transform: `translateX(-${slideIndex * 100}%)`, width: `${slides.length * 100}%` }}
+                        key={i}
+                        className="h-full flex-shrink-0 flex items-center justify-center p-6"
+                        style={{ width: `${100 / slides.length}%` }}
                       >
-                        {slides.map((src, i) => (
-                          <div key={i} className="h-full w-full flex-shrink-0 flex items-center justify-center">
-                            <ImageWithFallback
-                              src={src}
-                              alt={`${project.title} slide ${i + 1}`}
-                              className="max-w-full max-h-full w-auto h-auto object-contain"
-                            />
-                          </div>
-                        ))}
+                        <img
+                          src={src}
+                          alt={`${project.title} slide ${i + 1}`}
+                          className="max-w-full max-h-full w-auto h-auto object-contain"
+                          onLoad={() => console.log(`✓ Loaded: ${src}`)}
+                          onError={(e) => {
+                            console.error(`✗ Failed: ${src}`);
+                            console.error('Attempted URL:', e.currentTarget.src);
+                          }}
+                        />
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
+              </div>
 
-              {/* Next Button (outside) */}
-              <button
-                aria-label="Next image"
-                onClick={nextSlide}
-                disabled={!canNavigate}
-                className="px-3 py-2 rounded-full"
-                style={{
-                  background: "var(--nav-bg)",
-                  border: "1px solid var(--nav-border)",
-                  color: canNavigate ? "var(--text-primary)" : "var(--text-tertiary)",
-                  cursor: canNavigate ? "pointer" : "not-allowed",
-                  opacity: canNavigate ? 1 : 0.6,
-                }}
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* Navigation Arrows - Only show if multiple images */}
+              {canNavigate && (
+                <>
+                  {/* Previous Button */}
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-10"
+                    style={{
+                      background: "rgba(0, 0, 0, 0.6)",
+                      border: "2px solid rgba(255, 255, 255, 0.3)",
+                      color: "white",
+                    }}
+                    aria-label="Previous image"
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-10"
+                    style={{
+                      background: "rgba(0, 0, 0, 0.6)",
+                      border: "2px solid rgba(255, 255, 255, 0.3)",
+                      color: "white",
+                    }}
+                    aria-label="Next image"
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+
+                  {/* Image Counter */}
+                  <div
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full font-quantico text-sm z-10"
+                    style={{
+                      background: "rgba(0, 0, 0, 0.7)",
+                      color: "white",
+                    }}
+                  >
+                    {slideIndex + 1} / {slides.length}
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
         ) : project.videoUrl?.trim() ? (
@@ -315,24 +326,20 @@ export function ProjectDetailPage({
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <div
-              className="rounded-2xl overflow-hidden"
+              className="rounded-2xl overflow-hidden bg-[var(--nav-bg)]"
               style={{
                 boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
                 border: "1px solid var(--border)",
               }}
             >
-                      <div
-                        className="relative w-full"
-                        style={{ paddingBottom: "56.25%" }}
-                      >
-                      <iframe
-                        src={getVideoEmbedUrl(project.videoUrl)}
-                        className="absolute top-0 left-0 w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{ border: "none" }}
-                      />
-                    </div>
+              <video
+                className="w-full h-auto"
+                controls
+                preload="metadata"
+              >
+                <source src={project.videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </motion.div>
         ) : (
@@ -351,7 +358,7 @@ export function ProjectDetailPage({
                 height: "min(70vh, 720px)",
               }}
             >
-              <ImageWithFallback
+              <img
                 src={project.image}
                 alt={project.title}
                 className="max-w-full max-h-full w-auto h-auto object-contain"

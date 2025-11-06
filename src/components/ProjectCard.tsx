@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useState } from "react";
 
 interface ProjectCardProps {
@@ -18,7 +17,6 @@ interface ProjectCardProps {
 export function ProjectCard({
   title,
   description,
-  technologies,
   badges,
   date,
   images,
@@ -74,8 +72,16 @@ export function ProjectCard({
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <ImageWithFallback
-                src={(images && images.length > 0 ? images[0] : image) as string}
+              <img
+                src={(function(){
+                  const raw = (images && images.length > 0 ? images[0] : image) as string
+                  if (!raw) return raw as any
+                  if (/^https?:\/\//i.test(raw) || /^data:/i.test(raw)) return raw
+                  const base = (import.meta as any).env?.BASE_URL ?? '/'
+                  const normalized = raw.replace(/^\/+/, '')
+                  const withBase = (base.endsWith('/') ? base : base + '/') + normalized
+                  return withBase
+                })() as any}
                 alt={title}
                 className="w-auto max-w-full h-auto max-h-[320px] object-contain bg-[var(--nav-bg)] mx-auto"
               />

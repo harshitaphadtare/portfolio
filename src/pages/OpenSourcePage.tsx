@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Star, GitMerge, AlertCircle } from "lucide-react";
 import { GitHubContributionGraph } from "../components/GitHubContributionGraph";
-import data from "../assets/info.json";
+import data from "../info.json";
 
 interface Contribution {
   id: number;

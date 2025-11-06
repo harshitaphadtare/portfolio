@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ExperienceCard } from "./ExperienceCard";
-import data from "../assets/info.json";
+import data from "../info.json";
 
 const experiences = data.experiences;
 export function ExperienceSection() {

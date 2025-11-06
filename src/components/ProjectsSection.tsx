@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
-import data from "../assets/info.json";
+import data from "../info.json";
 
 export const projects = data.projects;
 

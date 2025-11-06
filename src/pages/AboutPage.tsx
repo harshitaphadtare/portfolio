@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, FileText } from "lucide-react";
-import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import profileImage from "../assets/harshita.png";
-import data from "../assets/info.json";
+import data from "../info.json";
+
+const profileImage = "/harshita.png";
 
 // Medium icon as SVG since it's not in lucide-react
 const MediumIcon = () => (
@@ -33,6 +33,51 @@ const techStack = data.techStack;
 const photoGallery = data.photoGallery;
 export function AboutPage() {
   const { personal } = data;
+  // Prefer a clean PDF file name; fall back to the existing legacy name in public
+  const resumePdfPreferred = "Harshita_Phadtare.pdf";
+  const resumePdfLegacy = "Harshita_Phadtare.docx.pdf"; // current file in public
+  const resumeDocx = "Harshita_Phadtare.docx"; // ultimate fallback if PDFs are missing
+
+  const buildPublicUrl = (file: string) => {
+    const base = (import.meta as any).env?.BASE_URL ?? "/";
+    const normalized = file.replace(/^\/+/, "");
+    return (base.endsWith("/") ? base : base + "/") + normalized;
+  };
+
+  const triggerDownload = (url: string, filename: string) => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.setAttribute("download", filename);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+
+  const handleDownloadResume = async () => {
+    // 1) Try preferred PDF name
+    try {
+      const preferred = buildPublicUrl(resumePdfPreferred);
+      const headPreferred = await fetch(preferred, { method: "HEAD" });
+      if (headPreferred.ok) {
+        triggerDownload(preferred, "Harshita_Phadtare.pdf");
+        return;
+      }
+    } catch (_) {}
+
+    // 2) Try legacy PDF name present in the repo
+    try {
+      const legacy = buildPublicUrl(resumePdfLegacy);
+      const headLegacy = await fetch(legacy, { method: "HEAD" });
+      if (headLegacy.ok) {
+        triggerDownload(legacy, "Harshita_Phadtare.pdf");
+        return;
+      }
+    } catch (_) {}
+
+    // 3) Final fallback: docx if no PDF is present
+    const docx = buildPublicUrl(resumeDocx);
+    triggerDownload(docx, resumeDocx);
+  };
 
   return (
     <div className="relative pt-24 pb-16">
@@ -86,8 +131,9 @@ export function AboutPage() {
               </div>
 
               {/* Download Resume Button */}
-              <motion.a
-                href="#"
+              <motion.button
+                type="button"
+                onClick={handleDownloadResume}
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-quantico w-full sm:w-[400px]"
                 style={{
                   backgroundColor: "var(--cta-button-bg)",
@@ -107,7 +153,7 @@ export function AboutPage() {
               >
                 <FileText className="w-5 h-5" />
                 Download Resume
-              </motion.a>
+              </motion.button>
             </motion.div>
 
             {/* Right Column - Info (No Background) */}
@@ -350,8 +396,9 @@ export function AboutPage() {
                           border: "1px solid var(--border)",
                         }}
                       >
-                        <ImageWithFallback
+                        <img
                           src={photo.url}
+                          alt="Travel photo"
                           className="w-full h-full object-cover"
                         />
                       </div>
