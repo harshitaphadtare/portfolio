@@ -3,5 +3,14 @@
   import App from "./App";
   import "./index.css";
 
-  createRoot(document.getElementById("root")!).render(<App />);
+  // Vercel Analytics
+  // Install the package locally with: npm install @vercel/analytics
+  import { Analytics } from "@vercel/analytics/react";
+
+  createRoot(document.getElementById("root")!).render(
+    <>
+      <App />
+      <Analytics />
+    </>
+  );
   
