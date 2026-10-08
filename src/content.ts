@@ -119,8 +119,13 @@ export const projects: Project[] = [
     role: "Solo · product, design & engineering",
     tags: ["Local-first", "PWA", "AI", "Geospatial"],
     stack: ["React", "TypeScript", "Vite PWA", "MapLibre GL", "OpenFreeMap", "Dexie / IndexedDB", "Turf.js", "Supabase", "Cloudflare Workers", "openrouteservice", "Overpass API", "Open-Meteo", "SunCalc", "Gemini API", "Motion"],
-    image: "/wander/hero.jpg",
-    gallery: ["/wander/checkin.jpg", "/wander/privacy.jpg", "/wander/features.jpg"],
+    image: "/wander/landing.jpg",
+    gallery: [
+      { src: "/wander/explore.jpg", caption: "Explore by mood, real places nearby and outings timed to fit an hour" },
+      { src: "/wander/walks.jpg", caption: "Place cards, sunset- and weather-aware walk timing, and loops from where you are" },
+      { src: "/wander/memories.jpg", caption: "Your map, a journal of visits and notes, and places that level up" },
+      { src: "/wander/privacy.jpg", caption: "Sync is end-to-end encrypted, so the server only ever sees ciphertext" },
+    ],
     live: "https://wander-one-eta.vercel.app",
     github: "https://github.com/harshitaphadtare/Wander",
     metrics: [
