@@ -1,8 +1,13 @@
+# harshitaphadtare.dev
 
+Personal portfolio of Harshita Phadtare, AI engineer and MS Artificial Intelligence student at RMIT Melbourne.
 
-  ## Running the code
+Built with React, TypeScript, Vite, Framer Motion and Lenis. Deployed on Vercel.
 
-  Run `npm i` to install the dependencies.
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # outputs to /build
+```
 
-  Run `npm run dev` to start the development server.
-  
+All copy (projects, experience, education, toolkit) lives in `src/content.ts`. Edit it there and the site updates.
